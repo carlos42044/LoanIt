@@ -2,6 +2,8 @@
     <string name="app_name">LoanLove</string>
     <string name="welcome_to_loan_love">Welcome to Loan Love</string>
     <string name="description">Know your loan</string>
-    <string name="interest_rate">Interest Rate</string>
-    <string name="loan_amount">Loan Amount</string>
+    <string name="interest_rate">Interest rate (%)</string>
+    <string name="loan_amount">Loan amount</string>
+    <string name="loan_term">Loan term (months)</string>
+    <string name="calculate">Calculate</string>
 </resources>
