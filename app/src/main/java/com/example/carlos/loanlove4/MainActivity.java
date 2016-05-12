@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText e2;
     private EditText e3;
     private TextView t4;
+    private TableLayout t1;
+    private TableRow tr_head;
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
@@ -43,20 +45,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
-    }
-
-
-    public void onButtonClick(View v) {
-
-        e2 = (EditText) findViewById(R.id.editText2);
-        e3 = (EditText) findViewById(R.id.editText3);
-        //t4 = (TextView) findViewById(R.id.textView4);
 
         //code to make the table
-        TableLayout t1 = (TableLayout) findViewById(R.id.main_table); //defining the table element
+        t1 = (TableLayout) findViewById(R.id.main_table); //defining the table element
 
         //create the table row header to hold the column headings
-        TableRow tr_head = new TableRow(this);
+        tr_head = new TableRow(this);
         tr_head.setId(10);
         tr_head.setBackgroundColor(Color.parseColor("#777777"));
         tr_head.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -95,10 +89,23 @@ public class MainActivity extends AppCompatActivity {
         //label_balance.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
         tr_head.addView(label_balance);
+    }
+
+
+    public void onButtonClick(View v) {
+
+        e2 = (EditText) findViewById(R.id.editText2);
+        e3 = (EditText) findViewById(R.id.editText3);
+        //t4 = (TextView) findViewById(R.id.textView4);
+
+
 
         // After adding the colums to the table row its time to add the table row to the main table layout that we fetched at the start
-        t1.addView(tr_head, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
+        try {
+            t1.addView(tr_head, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
 
@@ -112,19 +119,21 @@ public class MainActivity extends AppCompatActivity {
             double interest = 0;
             double principalB = monthlyPayment;
             double balance = principal;
-            StringBuilder builder = new StringBuilder();
+            //StringBuilder builder = new StringBuilder();
 
             for (int i = 1; i <= years * 12; i++) {
                 interest = monthlyInterestRate * balance; //finds the current interest due for that month
                 principalB = principalB - interest; //calculates the principle (paid on loan) after the interest is deducted
                 balance = Math.abs(balance - principalB);
 
-                builder.append(String.format("%d\t\t\t\tInterest: $%,.2f\t\t\t\tprinicpal payment: $%,.2f\t\t\t\tbalance: $%,.2f\n", i, interest, principalB, balance));
+                //builder.append(String.format("%d\t\t\t\tInterest: $%,.2f\t\t\t\tprinicpal payment: $%,.2f\t\t\t\tbalance: $%,.2f\n", i, interest, principalB, balance));
                 //builder.append(interest + "\t" + principalB + " \t" + balance + "\n");
                 principalB = monthlyPayment;
+
+
             }
 
-            t4.setText(builder.toString());
+            //t4.setText(builder.toString());
 
             //Following two lines hide the keyboard when the user chooses to hit calculate instead of done on the keyboard
             InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);

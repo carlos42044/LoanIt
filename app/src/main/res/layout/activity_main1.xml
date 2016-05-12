@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="0dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -86,10 +86,12 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#C6002B"
         android:onClick="onButtonClick"
+        android:textSize="14sp"
         android:text="@string/calculate"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"/>
 
-    <!--
+<!--
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
