@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">LoanLove</string>
     <string name="welcome_to_loan_love">Welcome to Loan Love</string>
-    <string name="description">Know your loan</string>
+    <string name="description">Know your loans</string>
     <string name="interest_rate">Interest rate (%)</string>
     <string name="loan_amount">Loan amount</string>
-    <string name="loan_term">Loan term (months)</string>
+    <string name="loan_term">Loan term (years)</string>
     <string name="calculate">Calculate</string>
+    <string name="interest_header">Interest</string>
+    <string name="payment_number_header">Payment #</string>
+    <string name="principal_header">Principal</string>
+    <string name="balance_header">Balance</string>
+
+
+
 </resources>

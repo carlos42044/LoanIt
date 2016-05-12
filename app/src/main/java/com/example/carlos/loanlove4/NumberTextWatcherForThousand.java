@@ -120,12 +120,13 @@ public class NumberTextWatcherForThousand implements TextWatcher {
 
 
     //Trims all the comma of the string and returns
-    public static String trimCommaOfString(String string) {
+    public static Double trimCommaOfString(String string) {
 //        String returnString;
         if(string.contains(",")){
-            return string.replace(",","");}
+            return Double.parseDouble(string.replace(",",""));
+        }
         else {
-            return string;
+            return Double.parseDouble(string);
         }
 
     }
