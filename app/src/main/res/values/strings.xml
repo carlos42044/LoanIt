@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">LoanLove</string>
-    <string name="welcome_to_loan_love">Welcome to Loan Love</string>
+    <string name="app_name">Loan It</string>
+    <string name="welcome_to">Welcome to Loan It</string>
     <string name="description">Know your loans</string>
     <string name="interest_rate">Interest rate (%)</string>
     <string name="loan_amount">Loan amount</string>
@@ -10,6 +10,11 @@
     <string name="payment_number_header">Payment #</string>
     <string name="principal_header">Principal</string>
     <string name="balance_header">Balance</string>
+    <string name="card_1_title">Results\n</string>
+    <string name="monthly_payment_result">Monthly payment:</string>
+    <string name="total_interest_result">Total interest:</string>
+    <string name="total_paid_result">Total paid:</string>
+    <string name="summary_card_one_title">Summary</string>
 
 
 

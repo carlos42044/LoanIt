@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Loan.db";
-    public static final String TABLE_NAME = "amorization_table";
+    public static final String TABLE_NAME = "amortization_table";
     public static final String COL_1 = "PAYMENT";
     public static final String COL_2 = "INTEREST";
     public static final String COL_3 = "PRINCIPAL";

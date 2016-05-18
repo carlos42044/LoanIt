@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="@string/welcome_to_loan_love"
+        android:text="@string/welcome_to"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="24sp" />
 
@@ -84,35 +84,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="#C6002B"
+        android:backgroundTint="#3F51B5"
         android:onClick="onButtonClick"
         android:textSize="14sp"
         android:text="@string/calculate"
         android:textColor="#FFFFFF"
         android:layout_marginBottom="20dp"/>
 
-<!--
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:fillViewport="false">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="12sp" />
-    </ScrollView>
--->
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*"
-        android:id="@+id/main_table"
-        android:layout_weight="1">
 
-    </TableLayout>
 </LinearLayout>
