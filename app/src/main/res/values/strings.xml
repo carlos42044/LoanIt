@@ -7,7 +7,7 @@
     <string name="loan_term">Loan term (years)</string>
     <string name="calculate">Calculate</string>
     <string name="interest_header">Interest</string>
-    <string name="payment_number_header">Payment #</string>
+    <string name="payment_number_header">No.</string>
     <string name="principal_header">Principal</string>
     <string name="balance_header">Balance</string>
     <string name="card_1_title">Results\n</string>
