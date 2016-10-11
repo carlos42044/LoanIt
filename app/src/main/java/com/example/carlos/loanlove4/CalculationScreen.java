@@ -1,12 +1,9 @@
 package com.example.carlos.loanlove4;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
@@ -20,7 +17,6 @@ public class CalculationScreen extends AppCompatActivity {
     private double monthlyPayment, years, totalInterest, principal;
     private StringBuilder builder;
     private TableLayout t1;
-    DatabaseAdapter databaseHelper;
 
 
     @Override
@@ -28,7 +24,6 @@ public class CalculationScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculation_screen);
         Intent intent = getIntent();
-        //databaseHelper = new DatabaseAdapter(this);
 
         // get the doubles from the bundle
         Bundle bundle = getIntent().getExtras();
@@ -43,13 +38,12 @@ public class CalculationScreen extends AppCompatActivity {
         double interest = 0;
         double principalB = monthlyPayment;
         double balance = principal;
-        //builder = new StringBuilder();
-        //builder.append("Month/\t\t\t\t\tInterest\t\t\t\tPrincipal Payment\t\t\t\t\tBalance\n");
-        //5builder.append("Payment\n");
+
 
         totalInterest = 0;
         t1 = (TableLayout) findViewById(R.id.main_table);
         int rowColor = 0;
+
         setCardviews();
 
         for (int i = 1; i <= years * 12; i++) {
@@ -57,12 +51,6 @@ public class CalculationScreen extends AppCompatActivity {
             totalInterest += interest;
             principalB = principalB - interest; //calculates the principle (paid on loan) after the interest is deducted
             balance = Math.abs(balance - principalB);
-
-            //builder.append(String.format("%d\t\t\t\t\t\t\t\t\t\t\t\t$%,.2f\t\t\t\t\t\t\t$%,.2f\t\t\t\t\t\t\t$%,.2f\n", i, interest, principalB, balance));
-            //final boolean b = myDb.insertData(interest, principalB, balance);
-            //myDb.insertData(interest, principalB, balance);
-
-            principalB = monthlyPayment;
 
             if (i % 2 == 0) {
                 rowColor = Color.parseColor("#e8eaf6");
@@ -78,10 +66,9 @@ public class CalculationScreen extends AppCompatActivity {
             textViewSetter(i, formatNumber(balance),Color.BLACK, row);
 
             t1.addView(row, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        }
+            principalB = monthlyPayment;
 
-//        test message to see if the for loop was doing all of the calculations (used to debug)
-//        Message.message(this, Integer.toString(count));
+        }
 
         TextView interestCalculated = (TextView) findViewById(R.id.calculated_total_interest);
         interestCalculated.setTextSize(14);
@@ -165,8 +152,6 @@ public class CalculationScreen extends AppCompatActivity {
         name.setTextColor(color);
         name.setPadding(5,5,5,5);
 
-        //name.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-
         table_row.addView(name);
     }
     public TableRow createTableRow(int id, int color) {
@@ -181,5 +166,4 @@ public class CalculationScreen extends AppCompatActivity {
         String formattedNumber = String.format("$%,.2f", d);
         return formattedNumber;
     }
-    //perhaps add a method to calculate all of the table and its row in a different method
 }
