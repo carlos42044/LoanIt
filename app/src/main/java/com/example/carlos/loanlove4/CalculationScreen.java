@@ -2,10 +2,8 @@ package com.example.carlos.loanlove4;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TableLayout;
@@ -15,10 +13,8 @@ import android.widget.TextView;
 
 public class CalculationScreen extends AppCompatActivity {
     private double monthlyPayment, years, totalInterest, principal;
-    private StringBuilder builder;
     private TableLayout t1;
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +40,19 @@ public class CalculationScreen extends AppCompatActivity {
         t1 = (TableLayout) findViewById(R.id.main_table);
         int rowColor = 0;
 
-        setCardviews();
+        //code for the table
+        TableRow tr_head = createTableRow(10, Color.parseColor("#3F51B5"));
 
+        // Adding data sections to the table row
+        textViewSetter(20, R.string.payment_number_header, Color.WHITE, tr_head);
+        textViewSetter(21, R.string.interest_header, Color.WHITE, tr_head);
+        textViewSetter(22, R.string.principal_header, Color.WHITE, tr_head);
+        textViewSetter(23, R.string.balance_header, Color.WHITE, tr_head);
+
+        // add the text to the table row.
+        t1.addView(tr_head, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
+        // Loop for calculations, adds each row programatically.
         for (int i = 1; i <= years * 12; i++) {
             interest = monthlyInterestRate * balance; //finds the current interest due for that month
             totalInterest += interest;
@@ -67,17 +74,13 @@ public class CalculationScreen extends AppCompatActivity {
 
             t1.addView(row, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             principalB = monthlyPayment;
-
         }
 
-        TextView interestCalculated = (TextView) findViewById(R.id.calculated_total_interest);
-        interestCalculated.setTextSize(14);
-        interestCalculated.setGravity(Gravity.END);
-        interestCalculated.setText(String.format("$%,.2f", totalInterest));
+        setSummarryCardview();
     }
 
-    // method to dynamically set text views... look up differene between .setText and setId...
-    public void setCardviews() {
+    // Sets the values for the Summarry card,
+    public void setSummarryCardview() {
         // The first card view holding the RESULTS, monthly payment, total interest ect.
 
         TextView cardOneTitle = (TextView) findViewById(R.id.card_one_title);
@@ -88,6 +91,7 @@ public class CalculationScreen extends AppCompatActivity {
         TextView loanAmount = (TextView) findViewById(R.id.original_loan);
         loanAmount.setTextSize(14);
         loanAmount.setText(R.string.original_loan_amount);
+
 
         TextView loanAmountNumber = (TextView) findViewById(R.id.original_loan_amount);
         loanAmountNumber.setTextSize(14);
@@ -107,7 +111,10 @@ public class CalculationScreen extends AppCompatActivity {
         interestHeader.setTextSize(14);
         interestHeader.setText(R.string.total_interest_result);
 
-        // had to move the total interest to below the
+        TextView interestCalculated = (TextView) findViewById(R.id.calculated_total_interest);
+        interestCalculated.setTextSize(14);
+        interestCalculated.setGravity(Gravity.END);
+        interestCalculated.setText(String.format("$%,.2f", totalInterest));
 
         TextView totalHeader = (TextView) findViewById(R.id.total_paid);
         totalHeader.setTextSize(14);
@@ -117,43 +124,32 @@ public class CalculationScreen extends AppCompatActivity {
         totalCalculated.setTextSize(14);
         totalCalculated.setGravity(Gravity.END);
         totalCalculated.setText(String.format("$%,.2f", monthlyPayment * years * 12));
-
-        //code for the table
-
-        TableRow tr_head = createTableRow(10, Color.parseColor("#3F51B5"));
-
-        // Adding data sections to the table row
-        textViewSetter(20, R.string.payment_number_header, Color.WHITE, tr_head, Typeface.BOLD);
-        textViewSetter(21, R.string.interest_header, Color.WHITE, tr_head, Typeface.BOLD);
-        textViewSetter(22, R.string.principal_header, Color.WHITE, tr_head, Typeface.BOLD);
-        textViewSetter(23, R.string.balance_header, Color.WHITE, tr_head, Typeface.BOLD);
-
-        // add the text to the table row.
-        t1.addView(tr_head, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
     }
-    public void textViewSetter(int id, int text, int color, TableRow table_row, int typeface){
-        TextView name = new TextView(this);
-        name.setId(id);
-        name.setText(text);
-        name.setTextColor(color);
-       // name.setTypeface(null, typeface);
-        name.setTextSize(16);
-        name.setPadding(5,5,5,5);
-        //name.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
-        table_row.addView(name);
+    public void textViewSetter(int id, int text, int color, TableRow table_row){
+        TextView textView = new TextView(this);
+        textView.setId(id);
+        textView.setText(text);
+        textView.setTextColor(color);
+        textView.setTextSize(16);
+        textView.setPadding(5,5,5,5);
+
+        // Add the text view to the table row
+        table_row.addView(textView);
     }
 
     public void textViewSetter(int id, String text, int color, TableRow table_row){
-        TextView name = new TextView(this);
-        name.setId(id);
-        name.setText(text);
-        name.setTextColor(color);
-        name.setPadding(5,5,5,5);
+        TextView textView = new TextView(this);
+        textView.setId(id);
+        textView.setText(text);
+        textView.setTextColor(color);
+        textView.setPadding(5,5,5,5);
 
-        table_row.addView(name);
+        // Add the text view to the table row
+        table_row.addView(textView);
     }
+
+    // Creates a table Row porgramatically with a specific color
     public TableRow createTableRow(int id, int color) {
         TableRow tr = new TableRow(this);
         tr.setId(id);
@@ -162,6 +158,7 @@ public class CalculationScreen extends AppCompatActivity {
         return tr;
     }
 
+    // Formats a double to two decimal places
     public String formatNumber (double d){
         String formattedNumber = String.format("$%,.2f", d);
         return formattedNumber;
