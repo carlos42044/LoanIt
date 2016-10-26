@@ -2,6 +2,7 @@ package com.example.carlos.loanlove4;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -9,12 +10,12 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
+//this is the initial branch
 
 public class CalculationScreen extends AppCompatActivity {
     private double monthlyPayment, years, totalInterest, principal;
-    private TableLayout t1;
-    
+    private TableLayout t0, t1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,22 +36,24 @@ public class CalculationScreen extends AppCompatActivity {
         double principalB = monthlyPayment;
         double balance = principal;
 
-
         totalInterest = 0;
         t1 = (TableLayout) findViewById(R.id.main_table);
+        t0 = (TableLayout) findViewById(R.id.origin_table);
+
         int rowColor = 0;
 
         //code for the table
-        TableRow tr_head = createTableRow(10, Color.parseColor("#3F51B5"));
+        TableRow tr_head = createTableRow(10, Color.parseColor("#3F51B5"), "s");
 
-        // Adding data sections to the table row
+        // Adding data sections to the table header row
         textViewSetter(20, R.string.payment_number_header, Color.WHITE, tr_head);
         textViewSetter(21, R.string.interest_header, Color.WHITE, tr_head);
         textViewSetter(22, R.string.principal_header, Color.WHITE, tr_head);
         textViewSetter(23, R.string.balance_header, Color.WHITE, tr_head);
 
         // add the text to the table row.
-        t1.addView(tr_head, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        //t0.addView(tr_head);
+        //t0.addView(tr_head, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
         // Loop for calculations, adds each row programatically.
         for (int i = 1; i <= years * 12; i++) {
@@ -132,7 +135,7 @@ public class CalculationScreen extends AppCompatActivity {
         textView.setText(text);
         textView.setTextColor(color);
         textView.setTextSize(16);
-        textView.setPadding(5,5,5,5);
+        //textView.setPadding(5,5,5,5);
 
         // Add the text view to the table row
         table_row.addView(textView);
@@ -143,7 +146,7 @@ public class CalculationScreen extends AppCompatActivity {
         textView.setId(id);
         textView.setText(text);
         textView.setTextColor(color);
-        textView.setPadding(5,5,5,5);
+        //textView.setPadding(5,5,5,5);
 
         // Add the text view to the table row
         table_row.addView(textView);
@@ -151,6 +154,7 @@ public class CalculationScreen extends AppCompatActivity {
 
     // Creates a table Row porgramatically with a specific color
     public TableRow createTableRow(int id, int color) {
+        // find the view
         TableRow tr = new TableRow(this);
         tr.setId(id);
         tr.setBackgroundColor(color);
@@ -158,6 +162,14 @@ public class CalculationScreen extends AppCompatActivity {
         return tr;
     }
 
+    public TableRow createTableRow(int id, int color, String s) {
+        // find the view
+        TableRow tr = (TableRow) findViewById(R.id.header_row);
+        //tr.setId(R.id.);
+        tr.setBackgroundColor(color);
+       // tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        return tr;
+    }
     // Formats a double to two decimal places
     public String formatNumber (double d){
         String formattedNumber = String.format("$%,.2f", d);
